@@ -16,13 +16,13 @@ with app.app_context():
     db.create_all()
 
 # Load model safely
-try:
+if os.path.exists("spam_model.pkl") and os.path.exists("tfidf_vectorizer.pkl"):
     model = joblib.load("spam_model.pkl")
     vectorizer = joblib.load("tfidf_vectorizer.pkl")
-except Exception as e:
-    print("❌ Model loading error:", e)
-    model = None
-    vectorizer = None
+else:
+    print("⚠️ Model not found. Training new model...")
+    from train import train_model
+    model, vectorizer = train_model()
 
 
 @app.route("/")
