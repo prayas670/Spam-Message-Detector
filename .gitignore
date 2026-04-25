@@ -1,0 +1,5 @@
+/instance
+/predictions.db
+/spam_model.pkl
+/tfidf_vectorizer.pkl
+/__pycache__
