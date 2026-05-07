@@ -10,6 +10,7 @@ A lightweight, machine learning-powered web application built with Flask that cl
 - **Auto-Initialization:** Intelligently trains the machine learning model on the first run if pre-trained weights are not found.
 - **CLI Testing Tool:** Includes a command-line script for quick batch testing without launching the web server.
 
+
 ##  Tech Stack
 
 - **Backend Framework:** Python, Flask
@@ -17,6 +18,10 @@ A lightweight, machine learning-powered web application built with Flask that cl
 - **Data Handling:** Pandas, Joblib
 - **Database:** SQLite, Flask-SQLAlchemy
 - **Frontend:** HTML/CSS (Jinja2 Templates)
+
+##   Why This Project Matters
+
+Spam messages are one of the most common cybersecurity threats affecting communication systems today. This project demonstrates how Machine Learning can be effectively used to automate spam filtering and improve digital communication safety.  
 
 ##  Project Structure
 
