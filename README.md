@@ -1,4 +1,4 @@
-#  AI Spam Detector Web App
+##  AI Spam Detector Web App
 
 A lightweight, machine learning-powered web application built with Flask that classifies text messages as **Spam** or **Ham**. The system utilizes Natural Language Processing (TF-IDF) and a Logistic Regression model to accurately predict message categories in real-time.
 
