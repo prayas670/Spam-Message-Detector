@@ -17,7 +17,7 @@ A lightweight, machine learning-powered web application built with Flask that cl
 - **Machine Learning:** Scikit-Learn (Logistic Regression, TF-IDF Vectorization)
 - **Data Handling:** Pandas, Joblib
 - **Database:** SQLite, Flask-SQLAlchemy
-- **Frontend:** HTML/CSS (Jinja2 Templates)
+- **Frontend:** HTML/CSS 
 
 ##   Why This Project Matters
 
