@@ -31,6 +31,8 @@ Scam,
 Fraud,
 Malware Links
 
+2. Detection History Dashboard
+
 ##  Project Structure
 
 ```text
