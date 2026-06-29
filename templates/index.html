@@ -11,8 +11,8 @@
     * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
 
     body {
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      color:white;
+      background: linear-gradient(135deg, #10242d, #253d45, #7cbbd6);
+      color:rgb(250, 249, 249);
       display:flex;
       justify-content:center;
       align-items:center;
@@ -47,12 +47,27 @@
       width:100%; padding:10px;
       border:none; border-radius:10px;
       background:linear-gradient(45deg,#00c6ff,#0072ff);
-      color:white; cursor:pointer;
+      color:rgb(145, 208, 228); cursor:pointer;
     }
 
     .result { margin-top:15px; text-align:center; }
-    .spam { color:#ff4d4d; }
-    .ham { color:#00ffcc; }
+    .spam { color:#ef6868; }
+    .ham { color:#8dcec1; }
+
+    .category-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      margin: 8px 0;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .badge-promotional { background-color: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.4); }
+    .badge-scam { background-color: rgba(139, 92, 246, 0.2); color: #a78bfa; border: 1px solid rgba(139, 92, 246, 0.4); }
+    .badge-fraud { background-color: rgba(236, 72, 153, 0.2); color: #f472b6; border: 1px solid rgba(236, 72, 153, 0.4); }
+    .badge-malware-links { background-color: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.4); }
 
     .history {
       margin-top:20px;
@@ -85,20 +100,23 @@
     <button type="submit">Analyze</button>
   </form>
   
-  <br><br>
-<a href="/history">
-    <button>View History</button>
-</a>
+  <br>
+  <a href="/dashboard" style="text-decoration: none;">
+      <button style="background: linear-gradient(45deg, #7cbbd6, #253d45); color: #fff; font-weight: 600;">📊 View Dashboard</button>
+  </a>
 
   {% if prediction_text %}
   <div class="result">
     <h2 class="{{ prediction_text }}">{{ prediction_text.upper() }}</h2>
+    {% if category %}
+      <div class="category-badge badge-{{ category.lower().replace(' ', '-') }}">{{ category }}</div>
+    {% endif %}
     <p>Confidence: {{ confidence }}%</p>
   </div>
   {% endif %}
 
   <!-- History Section -->
-   <div class="recent-searches">
+   <div class="recent-searches" style="margin-top: 25px;">
     <h3>📜 Recent Searches</h3>
 
     <div id="history" class="history">
@@ -116,16 +134,28 @@ function loadHistory() {
 
             container.innerHTML = "";
 
+            if (data.length === 0) {
+                container.innerHTML = "<div class='history-item' style='text-align: center; color: #aaa;'>No recent checks</div>";
+                return;
+            }
+
             data.forEach(item => {
                 let conf = item.confidence ? item.confidence.toFixed(1) : 0;
                 let labelClass = item.result.toLowerCase() === 'spam' ? 'label-spam' : 'label-ham';
                 
+                let categoryHtml = '';
+                if (item.result.toLowerCase() === 'spam' && item.category) {
+                    let catClass = 'badge-' + item.category.toLowerCase().replace(/\s+/g, '-');
+                    categoryHtml = `<span class="category-badge ${catClass}" style="margin: 0; padding: 2px 6px; font-size: 10px; vertical-align: middle;">${item.category}</span>`;
+                }
+                
                 container.innerHTML += `
                     <div class="history-item">
-                        <div style="margin-bottom: 4px;"><strong>Message:</strong> ${item.message}</div>
-                        <div>
-                            <strong>Result:</strong> <span class="${labelClass}">${item.result.toUpperCase()}</span> 
-                            | <strong>Confidence:</strong> ${conf}%
+                        <div style="margin-bottom: 4px; word-break: break-all;"><strong>Message:</strong> ${item.message}</div>
+                        <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                            <span><strong>Result:</strong> <span class="${labelClass}">${item.result.toUpperCase()}</span></span> 
+                            <span>| <strong>Confidence:</strong> ${conf}%</span>
+                            ${categoryHtml}
                         </div>
                     </div>
                 `;

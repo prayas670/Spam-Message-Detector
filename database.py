@@ -13,6 +13,7 @@ class Prediction(db.Model):
     id         = db.Column(db.Integer, primary_key=True)
     message    = db.Column(db.Text, nullable=False)
     result     = db.Column(db.String(10), nullable=False)   # 'spam' or 'ham'
+    category   = db.Column(db.String(50), nullable=True)    # 'Promotional', 'Scam', 'Fraud', 'Malware Links', or None
     confidence = db.Column(db.Float, nullable=False)        # probability %
     timestamp  = db.Column(db.DateTime, default=datetime.utcnow)
 
@@ -21,6 +22,7 @@ class Prediction(db.Model):
             "id":         self.id,
             "message":    self.message,
             "result":     self.result,
+            "category":   self.category,
             "confidence": round(self.confidence, 1),
             "timestamp":  self.timestamp.strftime("%Y-%m-%d %H:%M:%S"),
         }

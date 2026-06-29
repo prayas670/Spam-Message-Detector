@@ -3,6 +3,7 @@
 # ─────────────────────────────────────────────
 
 import joblib
+from classifier import classify_spam_category
 
 model      = joblib.load("spam_model.pkl")
 vectorizer = joblib.load("tfidf_vectorizer.pkl")
@@ -14,10 +15,14 @@ test_messages = [
     "Please find the attached report.",
 ]
 
-print("\n── Spam Detector Results ──")
+print("\n=== Spam Detector Results ===")
 for msg in test_messages:
     vec  = vectorizer.transform([msg])
     pred = model.predict(vec)[0]
     prob = model.predict_proba(vec)[0][pred]
-    label = "SPAM 🚫" if pred == 1 else "HAM  ✅"
-    print(f"{label}  ({prob*100:.1f}%)  →  {msg}")
+    if pred == 1:
+        cat = classify_spam_category(msg)
+        label = f"SPAM [{cat.upper()}] [SPAM]"
+    else:
+        label = "HAM  [SAFE]"
+    print(f"{label}  ({prob*100:.1f}%)  ->  {msg}")
