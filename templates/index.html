@@ -5,104 +5,315 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI Spam Detector</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+  
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Outfit', sans-serif; }
 
     body {
-      background: linear-gradient(135deg, #10242d, #253d45, #7cbbd6);
-      color:rgb(250, 249, 249);
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      min-height:100vh;
+      background-color: #090e17; /* Deep slate blue */
+      color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
     }
 
-    .container {
-      width:450px;
-      padding:25px;
-      border-radius:20px;
-      background:rgba(255,255,255,0.1);
-      backdrop-filter:blur(15px);
-      box-shadow:0 8px 32px rgba(0,0,0,0.3);
-      animation: float 4s ease-in-out infinite;
+    /* Professional Aurora Background Effect */
+    .aurora-bg {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      overflow: hidden;
+      z-index: -1;
+      filter: blur(90px);
+      opacity: 0.8;
+    }
+
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      animation: float 20s infinite alternate ease-in-out;
+    }
+
+    .blob-1 {
+      width: 50vw; height: 50vw;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.4) 0%, transparent 70%); /* Deep Blue */
+      top: -10%; left: -10%;
+      animation-delay: 0s;
+    }
+    
+    .blob-2 {
+      width: 45vw; height: 45vw;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, transparent 70%); /* Purple/Indigo */
+      bottom: -20%; right: -10%;
+      animation-delay: -5s;
+    }
+
+    .blob-3 {
+      width: 60vw; height: 60vw;
+      background: radial-gradient(circle, rgba(14, 165, 233, 0.3) 0%, transparent 70%); /* Cyan/Teal */
+      top: 20%; left: 30%;
+      animation-delay: -10s;
     }
 
     @keyframes float {
-      0%,100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(10%, 15%) scale(1.1); }
+      100% { transform: translate(-10%, -5%) scale(0.9); }
     }
 
-    h1 { text-align:center; margin-bottom:15px; }
+    /* Organic Decor Shape */
+    .organic-shape {
+      position: absolute;
+      width: 300px; height: 300px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+      backdrop-filter: blur(10px);
+      z-index: 0;
+      top: 15%; right: 20%;
+      animation: morph 15s ease-in-out infinite alternate;
+    }
 
+    @keyframes morph {
+      0% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; transform: rotate(0deg); }
+      100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; transform: rotate(45deg); }
+    }
+
+    /* Claymorphism Container */
+    .container {
+      position: relative;
+      z-index: 1;
+      width: 480px;
+      padding: 40px;
+      border-radius: 40px;
+      background: rgba(15, 20, 30, 0.75); /* Slate grey/blue */
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      /* Double inner shadow for Clay effect */
+      box-shadow: 
+        15px 15px 40px rgba(0, 0, 0, 0.4), 
+        -10px -10px 30px rgba(255, 255, 255, 0.03),
+        inset 4px 4px 15px rgba(255, 255, 255, 0.05),
+        inset -4px -4px 20px rgba(0, 0, 0, 0.5);
+      animation: softPop 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      opacity: 0;
+      transform: scale(0.95);
+    }
+
+    @keyframes softPop {
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    h1 { 
+      text-align: center; 
+      margin-bottom: 25px; 
+      font-weight: 700;
+      font-size: 28px;
+      letter-spacing: -0.5px;
+      color: #ffffff;
+      text-shadow: 0 4px 10px rgba(0,0,0,0.8);
+    }
+
+    /* Clay Input Field */
     textarea {
-      width:100%; height:100px;
-      border-radius:10px; border:none;
-      padding:10px; margin-bottom:10px;
-      resize:none;
+      width: 100%; height: 130px;
+      border-radius: 25px; 
+      border: none;
+      background: rgba(10, 15, 25, 0.6);
+      color: #fff;
+      padding: 20px; 
+      margin-bottom: 20px;
+      resize: none;
+      font-size: 15px;
+      /* Deep inset shadow for pressed clay look */
+      box-shadow: 
+        inset 6px 6px 15px rgba(0,0,0,0.6), 
+        inset -4px -4px 10px rgba(255,255,255,0.03);
+      transition: all 0.3s ease;
     }
 
+    textarea::placeholder {
+      color: rgba(255,255,255,0.7);
+    }
+
+    textarea:focus {
+      outline: none;
+      background: rgba(8, 12, 20, 0.8);
+      box-shadow: 
+        inset 8px 8px 20px rgba(0,0,0,0.7), 
+        inset -4px -4px 10px rgba(255,255,255,0.05),
+        0 0 15px rgba(37, 99, 235, 0.2); /* Blue glow */
+    }
+
+    /* Clay Button */
     button {
-      width:100%; padding:10px;
-      border:none; border-radius:10px;
-      background:linear-gradient(45deg,#00c6ff,#0072ff);
-      color:rgb(145, 208, 228); cursor:pointer;
+      width: 100%; padding: 16px;
+      border: none; border-radius: 20px;
+      background: linear-gradient(135deg, #2563eb, #1e40af); /* Professional Blue */
+      color: #fff; 
+      font-weight: 600;
+      font-size: 16px;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      /* Extruded soft clay shadow */
+      box-shadow: 
+        8px 8px 20px rgba(0,0,0,0.3), 
+        -4px -4px 12px rgba(255,255,255,0.05),
+        inset 3px 3px 10px rgba(255,255,255,0.2),
+        inset -3px -3px 10px rgba(0,0,0,0.3);
+      transition: all 0.25s ease;
     }
 
-    .result { margin-top:15px; text-align:center; }
-    .spam { color:#ef6868; }
-    .ham { color:#8dcec1; }
+    button:hover {
+      background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+      transform: translateY(-2px);
+      box-shadow: 
+        10px 10px 25px rgba(0,0,0,0.4), 
+        -4px -4px 12px rgba(255,255,255,0.08),
+        inset 3px 3px 10px rgba(255,255,255,0.3),
+        inset -3px -3px 10px rgba(0,0,0,0.3);
+    }
 
+    button:active {
+      transform: translateY(2px);
+      /* Pressed state */
+      box-shadow: 
+        2px 2px 5px rgba(0,0,0,0.2), 
+        inset 4px 4px 15px rgba(0,0,0,0.4),
+        inset -2px -2px 8px rgba(255,255,255,0.1);
+    }
+
+    .btn-dashboard {
+      background: linear-gradient(135deg, #4f46e5, #3730a3); /* Professional Indigo */
+      margin-top: 5px;
+    }
+
+    .btn-dashboard:hover {
+      background: linear-gradient(135deg, #6366f1, #4338ca);
+    }
+
+    .result { 
+      margin-top: 25px; 
+      text-align: center; 
+      padding: 20px;
+      border-radius: 25px;
+      background: rgba(10, 15, 25, 0.5);
+      box-shadow: inset 4px 4px 15px rgba(0,0,0,0.4), inset -2px -2px 10px rgba(255,255,255,0.02);
+      animation: scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+
+    @keyframes scaleIn {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .spam { color: #ef4444; text-shadow: 0 2px 15px rgba(239, 68, 68, 0.4); font-size: 26px; font-weight: 700;}
+    .ham { color: #10b981; text-shadow: 0 2px 15px rgba(16, 185, 129, 0.4); font-size: 26px; font-weight: 700;}
+
+    /* Organic Category Badges */
     .category-badge {
       display: inline-block;
-      padding: 4px 10px;
-      border-radius: 8px;
-      font-size: 12px;
+      padding: 6px 16px;
+      border-radius: 30px 15px 30px 15px; /* Organic blob border radius */
+      font-size: 13px;
       font-weight: 600;
-      margin: 8px 0;
+      margin: 12px 0;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
-    .badge-promotional { background-color: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.4); }
-    .badge-scam { background-color: rgba(139, 92, 246, 0.2); color: #a78bfa; border: 1px solid rgba(139, 92, 246, 0.4); }
-    .badge-fraud { background-color: rgba(236, 72, 153, 0.2); color: #f472b6; border: 1px solid rgba(236, 72, 153, 0.4); }
-    .badge-malware-links { background-color: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.4); }
+    
+    .badge-promotional { background: #f59e0b; color: #fff; }
+    .badge-scam { background: #8b5cf6; color: #fff; }
+    .badge-fraud { background: #ef4444; color: #fff; }
+    .badge-malware-links { background: #3b82f6; color: #fff; }
+
+    .recent-searches {
+      margin-top: 30px;
+    }
+    .recent-searches h3 {
+      font-size: 16px;
+      margin-bottom: 15px;
+      font-weight: 600;
+      color: #ffffff;
+      text-align: center;
+    }
 
     .history {
-      margin-top:20px;
-      max-height:200px;
-      overflow-y:auto;
-      padding:10px;
-      border-radius:10px;
-      background:rgba(0,0,0,0.3);
+      max-height: 240px;
+      overflow-y: auto;
+      padding: 10px;
+      border-radius: 25px;
+      background: rgba(10, 15, 25, 0.4);
+      box-shadow: inset 5px 5px 15px rgba(0,0,0,0.5);
+    }
+
+    .history::-webkit-scrollbar {
+      width: 6px;
+    }
+    .history::-webkit-scrollbar-track {
+      background: rgba(255,255,255,0.02);
+      border-radius: 10px;
+    }
+    .history::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
     }
 
     .history-item {
-      padding:8px;
-      margin-bottom:8px;
-      border-bottom:1px solid rgba(255,255,255,0.1);
-      font-size:13px;
+      padding: 15px;
+      margin-bottom: 12px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.02);
+      font-size: 13px;
+      transition: all 0.3s ease;
+      cursor: default;
+      /* Soft extruded feel inside the history container */
+      box-shadow: 2px 2px 10px rgba(0,0,0,0.2), inset 1px 1px 2px rgba(255,255,255,0.05);
+    }
+    
+    .history-item:hover {
+      background: rgba(255,255,255,0.06);
+      transform: scale(1.02);
+      box-shadow: 4px 4px 15px rgba(0,0,0,0.3), inset 1px 1px 2px rgba(255,255,255,0.08);
     }
 
-    .label-spam { color:#ff4d4d; }
-    .label-ham { color:#00ffcc; }
+    .history-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .label-spam { color: #fca5a5; font-weight: 600;}
+    .label-ham { color: #6ee7b7; font-weight: 600;}
   </style>
 </head>
 
 <body>
 
-<div class="container">
+<!-- Professional Aurora Background -->
+<div class="aurora-bg">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+</div>
+
+<!-- Organic Decorative Shape -->
+<div class="organic-shape"></div>
+
+<div class="container" id="card">
   <h1>🤖 AI Spam Detector</h1>
 
   <form action="/predict" method="POST">
-    <textarea name="message" placeholder="Enter your message..."></textarea>
-    <button type="submit">Analyze</button>
+    <textarea name="message" placeholder="Paste your message here to detect spam..."></textarea>
+    <button type="submit">Analyze Content</button>
   </form>
   
   <br>
   <a href="/dashboard" style="text-decoration: none;">
-      <button style="background: linear-gradient(45deg, #7cbbd6, #253d45); color: #fff; font-weight: 600;">📊 View Dashboard</button>
+      <button class="btn-dashboard">📊 Open Analytics Dashboard</button>
   </a>
 
   {% if prediction_text %}
@@ -111,18 +322,18 @@
     {% if category %}
       <div class="category-badge badge-{{ category.lower().replace(' ', '-') }}">{{ category }}</div>
     {% endif %}
-    <p>Confidence: {{ confidence }}%</p>
+    <p style="font-weight: 400; font-size: 14px; margin-top: 8px; color: #cccccc;">Certainty: <strong style="color:#fff;">{{ confidence }}%</strong></p>
   </div>
   {% endif %}
 
   <!-- History Section -->
-   <div class="recent-searches" style="margin-top: 25px;">
-    <h3>📜 Recent Searches</h3>
+   <div class="recent-searches">
+    <h3>Recent Activity</h3>
 
     <div id="history" class="history">
-        Loading...
+        <div style="text-align:center; padding: 20px; color: #cccccc;">Loading activity flow...</div>
     </div>
-
+  </div>
 </div>
   
 <script>
@@ -135,26 +346,27 @@ function loadHistory() {
             container.innerHTML = "";
 
             if (data.length === 0) {
-                container.innerHTML = "<div class='history-item' style='text-align: center; color: #aaa;'>No recent checks</div>";
+                container.innerHTML = "<div class='history-item' style='text-align: center; color: rgba(255,255,255,0.3); box-shadow: none; background: transparent;'>No recent activity</div>";
                 return;
             }
 
-            data.forEach(item => {
+            data.forEach((item, index) => {
                 let conf = item.confidence ? item.confidence.toFixed(1) : 0;
                 let labelClass = item.result.toLowerCase() === 'spam' ? 'label-spam' : 'label-ham';
                 
                 let categoryHtml = '';
                 if (item.result.toLowerCase() === 'spam' && item.category) {
                     let catClass = 'badge-' + item.category.toLowerCase().replace(/\s+/g, '-');
-                    categoryHtml = `<span class="category-badge ${catClass}" style="margin: 0; padding: 2px 6px; font-size: 10px; vertical-align: middle;">${item.category}</span>`;
+                    categoryHtml = `<span class="category-badge ${catClass}" style="margin: 0; padding: 4px 10px; font-size: 10px; border-radius: 20px 10px 20px 10px;">${item.category}</span>`;
                 }
                 
                 container.innerHTML += `
-                    <div class="history-item">
-                        <div style="margin-bottom: 4px; word-break: break-all;"><strong>Message:</strong> ${item.message}</div>
-                        <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
-                            <span><strong>Result:</strong> <span class="${labelClass}">${item.result.toUpperCase()}</span></span> 
-                            <span>| <strong>Confidence:</strong> ${conf}%</span>
+                    <div class="history-item" style="animation: softPop 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards ${index * 0.1}s; opacity: 0; transform: scale(0.95);">
+                        <div style="margin-bottom: 8px; word-break: break-all; color: #ffffff; line-height: 1.5; font-weight: 500;">${item.message}</div>
+                        <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap; background: rgba(0,0,0,0.15); padding: 8px 12px; border-radius: 12px; box-shadow: inset 2px 2px 5px rgba(0,0,0,0.2);">
+                            <span>Result: <span class="${labelClass}">${item.result.toUpperCase()}</span></span> 
+                            <span style="color: rgba(255,255,255,0.2)">•</span>
+                            <span>Certainty: <strong style="color: #fff;">${conf}%</strong></span>
                             ${categoryHtml}
                         </div>
                     </div>
@@ -162,7 +374,7 @@ function loadHistory() {
             });
         })
         .catch(error => {
-            document.getElementById("history").innerHTML = "Error loading history";
+            document.getElementById("history").innerHTML = "<div style='text-align:center; color: #ef4444; padding: 20px;'>Failed to load activity</div>";
             console.error(error);
         });
 }
@@ -171,8 +383,5 @@ function loadHistory() {
 window.onload = loadHistory;
 </script>
 
-
 </body>
 </html>
-
-
