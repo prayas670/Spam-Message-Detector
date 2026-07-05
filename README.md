@@ -23,16 +23,6 @@ A lightweight, machine learning-powered web application built with Flask that cl
 
 Spam messages are one of the most common cybersecurity threats affecting communication systems today. This project demonstrates how Machine Learning can be effectively used to automate spam filtering and improve digital communication safety. 
 
-##  Future Updates
-1. Spam Category Classification:
-
-Promotional,
-Scam,
-Fraud,
-Malware Links
-
-2. Detection History Dashboard
-
 ##  Project Structure
 
 ```text
