@@ -15,7 +15,7 @@
 
 ### 🏠 Main Detector
 
-<img src="images/main-detector.jpg" alt="Main Detector" width="100%">
+<img src="images/main-detector.jpeg" alt="Main Detector" width="100%">
 
 </td>
 
@@ -23,7 +23,7 @@
 
 ### 📊 Analytics Dashboard
 
-<img src="images/dashboard.jpg" alt="Dashboard" width="100%">
+<img src="images/dashboard.jpeg" alt="Dashboard" width="100%">
 
 </td>
 </tr>
