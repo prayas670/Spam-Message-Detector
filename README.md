@@ -1,56 +1,171 @@
-##  AI Spam Detector Web App
+# 🛡️ AI Spam Detector Web App
 
-A lightweight, machine learning-powered web application built with Flask that classifies text messages as **Spam** or **Ham**. The system utilizes Natural Language Processing (TF-IDF) and a Logistic Regression model to accurately predict message categories in real-time.
+<p align="center">
+  <b>A modern Machine Learning-powered Spam Detection Web Application built with Python, Flask, Scikit-Learn, SQLite, and NLP (TF-IDF).</b><br><br>
+  Instantly classify messages as <b>Spam</b> or <b>Ham</b> while monitoring predictions through a powerful Analytics Dashboard.
+</p>
 
-##  Features
+---
 
-- **Real-Time Classification:** Instantly detects whether a given message is spam or ham.
-- **Confidence Scoring:** Displays the model's confidence score for each prediction.
-- **Prediction History:** Stores and displays a log of past predictions using an SQLite database.
-- **Auto-Initialization:** Intelligently trains the machine learning model on the first run if pre-trained weights are not found.
-- **CLI Testing Tool:** Includes a command-line script for quick batch testing without launching the web server.
+## 📸 Application Preview
 
+<table align="center">
+<tr>
+<td align="center" width="50%">
 
-##  Tech Stack
+### 🏠 Main Detector
 
-- **Backend Framework:** Python, Flask
-- **Machine Learning:** Scikit-Learn (Logistic Regression, TF-IDF Vectorization)
-- **Data Handling:** Pandas, Joblib
-- **Database:** SQLite, Flask-SQLAlchemy
-- **Frontend:** HTML/CSS 
+<img src="images/main-detector.jpg" alt="Main Detector" width="100%">
 
-##   Why This Project Matters
+</td>
 
-Spam messages are one of the most common cybersecurity threats affecting communication systems today. This project demonstrates how Machine Learning can be effectively used to automate spam filtering and improve digital communication safety. 
+<td align="center" width="50%">
 
-##  Project Structure
+### 📊 Analytics Dashboard
+
+<img src="images/dashboard.jpg" alt="Dashboard" width="100%">
+
+</td>
+</tr>
+</table>
+
+---
+
+# ✨ Features
+
+- ⚡ Real-Time Spam Detection
+- 🎯 Confidence Score
+- 📊 Analytics Dashboard
+- 📈 Spam Statistics
+- 🛡️ Threat Categorization
+- 🔍 Search & Filter Logs
+- 📝 Prediction History
+- 📤 Export Reports
+- 🗑️ Delete Scan Logs
+- 🤖 Automatic Model Training
+- 💻 CLI Prediction Tool
+
+---
+
+# 📊 Dashboard Highlights
+
+✔ Total Messages Scanned
+
+✔ Spam & Safe Content Statistics
+
+✔ Spam Ratio
+
+✔ Threat Breakdown
+
+✔ Searchable Scan Logs
+
+✔ Status & Threat Filters
+
+✔ Export Report
+
+✔ Delete Logs
+
+---
+
+# 🛠 Tech Stack
+
+| Category | Technologies |
+|-----------|--------------|
+| 🐍 Backend | Python, Flask |
+| 🤖 Machine Learning | Scikit-Learn, Logistic Regression, TF-IDF |
+| 🗄 Database | SQLite, Flask-SQLAlchemy |
+| 🎨 Frontend | HTML, CSS, JavaScript |
+| 📦 Libraries | Pandas, Joblib |
+
+---
+
+# 📂 Project Structure
 
 ```text
-├── app.py                 # Main Flask application and route definitions
-├── database.py            # SQLAlchemy database models
-├── train.py               # ML script to train the model and save weights
-├── predict.py             # CLI tool for quick terminal testing
-├── spam.csv               # Dataset used for training the model
-├── requirements.txt       # Python dependencies
-├── .gitignore             # Git ignore rules
-└── templates/
-    └── index.html         # Frontend user interface
+AI-Spam-Detector-Project-1/
+│
+├── app.py
+├── classifier.py
+├── database.py
+├── train.py
+├── predict.py
+├── spam.csv
+├── spam_model.pkl
+├── tfidf_vectorizer.pkl
+├── predictions.db
+├── requirements.txt
+├── README.md
+│
+├── templates/
+│   ├── index.html
+│   └── dashboard.html
+│
+└── images/
+    ├── main-detector.jpg
+    └── dashboard.jpg
+```
 
+---
 
-**Follow these steps to run the project locally:**
+# 🚀 Installation
 
-### 1. Clone the repository
+### Clone Repository
+
+```bash
 git clone https://github.com/prayas670/Ai-Spam-Detector-Project-1.git
+```
 
-### 2. Navigate to the project directory
+### Navigate to Project
+
+```bash
 cd Ai-Spam-Detector-Project-1
+```
 
-### 3. Install dependencies
+### Install Dependencies
+
+```bash
 pip install -r requirements.txt
+```
 
-### 4. Run the application
+### Run Application
+
+```bash
 python app.py
+```
 
-### 5. Open in your browser
+### Open Browser
+
+```
 http://127.0.0.1:5000
+```
 
+---
+
+# 💡 Why This Project?
+
+Spam messages are one of the most common cybersecurity threats. This project demonstrates how Machine Learning and Natural Language Processing can automatically classify spam messages while providing interactive analytics for monitoring prediction trends.
+
+---
+
+# 🚀 Future Improvements
+
+- 🔐 User Authentication
+- 📊 Interactive Charts
+
+---
+
+# 👨‍💻 Author
+
+**Prayas Gupta**
+
+🎓 B.Tech (Artificial Intelligence & Machine Learning)
+
+🔗 **GitHub:** https://github.com/prayas670
+
+💼 **LinkedIn:** https://www.linkedin.com/in/prayas-gupta23
+
+---
+
+<p align="center">
+⭐ If you found this project useful, consider giving it a star!
+</p>
