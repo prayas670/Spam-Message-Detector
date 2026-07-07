@@ -1,4 +1,4 @@
-# 🛡️ AI Spam Detector Web App
+# 🛡️ Spam Message Detector
 
 <p align="center">
   <b>A modern Machine Learning-powered Spam Detection Web Application built with Python, Flask, Scikit-Learn, SQLite, and NLP (TF-IDF).</b><br><br>
@@ -82,7 +82,7 @@
 # 📂 Project Structure
 
 ```text
-AI-Spam-Detector-Project-1/
+Spam Message Detector
 │
 ├── app.py
 ├── classifier.py
@@ -112,13 +112,13 @@ AI-Spam-Detector-Project-1/
 ### Clone Repository
 
 ```bash
-git clone https://github.com/prayas670/Ai-Spam-Detector-Project-1.git
+https://github.com/prayas670/Spam-Message-Detector
 ```
 
 ### Navigate to Project
 
 ```bash
-cd Ai-Spam-Detector-Project-1
+cd Spam-Message-Detector
 ```
 
 ### Install Dependencies
